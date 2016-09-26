@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+  <head>
+    <link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.min.css" />
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </head>
+
+  <body ng-controller="StoreController as store">
+    <!--  Store Header  -->
+    <header>
+      <h1 class="text-center">Modulo Docentes</h1>
+     <!-- <h2 class="text-center">Crud</h2>-->
+    </header>
+
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" >
+       
+
+     <div class="nav nav-pills">
+      <p align="right"> <a href ng-click="tab.setTab(6)" class="navbar-link">Jorge Diaz</a></p>
+     </div>
+
+        <!-- Menu del modulo de Docentes  -->
+        <section ng-controller="TabController as tab">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active:tab.isSet(1) }">
+              <a href ng-click="tab.setTab(1)">Inicio</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(2) }">
+              <a href ng-click="tab.setTab(2)">Salidas</a>
+            </li>
+
+              <li ng-class="{ active:tab.isSet(3) }">
+              <a href ng-click="tab.setTab(3)">Gestion de datos</a>
+            </li>
+
+              <li ng-class="{ active:tab.isSet(5) }">
+              <a href ng-click="tab.setTab(9)">Perfil</a>
+            </li>
+
+            </ul>
+
+          <!--  Description Tab's Content  -->
+  <div ng-show="tab.isSet(1)" >
+    <table class="table">
+        <thead>
+            
+        <th>Programa</th>
+        <th>Asignatura</th>
+        <th>Salida</th>
+        <th>Fecha</th>
+        <th>Descripcion</th>
+      </thead>
+  <tbody>
+  <tr ng-repeat="user in store.users">
+    <td>{{user.program}}</td>
+    <td>{{user.subject}}</td>
+    <td>{{user.Excursion}}</td>
+    <td>{{user.Date}}</td>
+    <td>{{user.Description}}</td>
+  </tbody>
+  </tr>
+</table>
+ <blockquote>{{product.description}}</blockquote>
+ </div>
+  
+          <div ng-show="tab.isSet(2)">
+            <!--  Product Reviews List -->
+            <ul>
+     
+              <li ng-repeat="review in product.reviews">
+                <blockquote>
+                  <strong>{{review.stars}} Stars</strong>
+                  {{review.body}}
+                  <cite class="clearfix">—{{review.author}} on  {{review.createdOn |date }} </cite>
+                </blockquote>
+              </li>
+            </ul>
+
+              <!-- Formulario para crear una nueva salida -->
+       <center>
+           <form name="reviewForm"  ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+         
+             
+              <!--  Live Preview -->
+              <blockquote >
+               <!-- <strong>Salida</strong>-->
+                <cite class="clearfix">{{reviewCtrl.review.author}}</cite>
+              </blockquote>
+
+                                 
+       
+             <div class="form-inline">
+             <textfield> Programa:</textfield>
+             </div>
+             <div>
+             <input type="text" class="form-control" placeholder="Programa" title="Programa">
+             </div>
+             
+             <div class="form-inline">
+             <textfield> Asignatura:</textfield>
+             </div>
+             <div>
+             <input type="text" class="form-control" placeholder="Asignatura" title="Asignatura">
+             </div>
+
+              <div class="form-inline">
+             <textfield> Salida:</textfield>
+             </div>
+             <div>
+             <input  ng-model="reviewCtrl.review.author" type="text" class="form-control" placeholder="Salida" title="Salida">
+             </div>
+
+             <div class="form-inline">
+             <textfield> Fecha De Inicio:</textfield>
+             </div>
+             <div>
+             <input type="date" class="form-control" placeholder="Fecha " title="FechaI">
+             </div>
+             <div class="form-inline">
+             <textfield> Fecha De Finalizacion:</textfield>
+             </div>
+             <div>
+             <input type="date" class="form-control" placeholder="Fecha " title="FechaF">
+             </div>
+                <div class="form-inline">
+             <textfield> Descripcion:</textfield>
+             </div>
+             
+              <div class="form-inline">
+             <textarea class="form-control" rows="3"></textarea>
+             </div>
+
+             <div class="form-inline">
+             <textfield> Password:</textfield>
+             </div>
+             <div>
+             <input type="password" class="form-control" placeholder="password " title="password">
+             </div>
+             <br>
+             <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Crear</button>
+           
+           </form>
+
+         </center>
+          
+          </div>
+
+
+             <div ng-show="tab.isSet(4)">
+              
+              <select class="selectpicker">
+              <optgroup label="Proyectos">
+              <option  ng-repeat="Proyect in store.Proyect"> 
+               <li>
+                <a>{{Proyect.Proyect}}</a>
+               </li>
+               </li>
+              </option>
+              </optgroup>
+              </select>
+                <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(11)">Crear Nueva Actividad</button>
+           
+       </div>
+
+           
+             <center>
+             <div ng-show="tab.isSet(11)">
+
+             <div class="form-inline" >         
+             <textfield> Actividad:</textfield>
+             </div>
+             <div>
+             <input type="text" class="form-control" placeholder="Actividad" title="Actividad">
+             </div>
+               <div class="form-inline" >
+              <textfield> Variable:</textfield>
+              </div>
+       <div>
+              
+              <select class="selectpicker">
+              <optgroup label="Tipo de Variable">
+              <option  ng-repeat="Var in store.var"> 
+               <li>
+                <a>{{Var.variable}}</a>
+               </li>
+               </option>
+              </optgroup>
+              </select>
+       </div>
+
+             <div class="form-inline" >         
+             <textfield> Medida:</textfield>
+             </div>
+             <div>
+             <input type="text" class="form-control" placeholder="Medicion" title="Medicion">
+             </div>
+          
+
+             <div class="form-inline">
+             <textfield> Lugar de recoleccion:</textfield>
+             </div>
+             <div>
+             <input type="text" class="form-control" placeholder="Lugar" title="Lugar">
+             </div>
+             <div class="form-inline">
+              <textfield>Fecha de Recoleccion</textfield>
+              </div>
+             <input type="date" class="form-control" placeholder="Fecha" title="Fecha">
+               <div class="form-inline">
+              <textfield>Imagen </textfield>
+              </div>
+             <input type="file" class="form-control" placeholder="Imagen" title="Imagen">
+         
+              <div>
+             
+               <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Crear
+             </div>
+             
+               </center>
+        
+           </div>
+       
+
+</div>
+</body>
+</html>
