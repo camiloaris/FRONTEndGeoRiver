@@ -4,11 +4,57 @@
 		<meta charset="UTF-8">
 		<title>Estudiantes</title>
 	</head>
-	<body>
-		<div ng-controller="controller_student as user" >
-			<h1> {{user.d.name}}</h1>
+	<body ng-controller="controller_student as user">
+		<div  >
+			<h1> {{user.d.user}}</h1>
 		</div>
-		
+
+		<section ng-controller= "panel_controller as panel">
+			<ul class="menu">
+				<li ng-class="{active: panel.selectis(1)}"> <a href ng-click="panel.selecttab(1)"> Inicio</a></li>
+				<li ng-class="{active: panel.selectis(2)}"> <a href ng-click="panel.selecttab(2)"> Matricularse</a></li>
+				<li ng-class="{active: panel.selectis(3)}"> <a href ng-click="panel.selecttab(3)"> Ingresar datos</a></li>
+				<li ng-class="{active: panel.selectis(4)}"> <a href ng-click="panel.selecttab(4)"> Ver datos</a></li>
+				<li ng-class="{active: panel.selectis(5)}"> <a href ng-click="panel.selecttab(5)"> Descargar datos</a></li>
+				<li ng-class="{active: panel.selectis(6)}"> <a href ng-click="panel.selecttab(6)"> Perfil</a></li>
+			</ul>
+
+			<div class ="panel" ng-show="panel.selectis(1)">
+				<h2> Nuevas actividades </h2>
+			</div>	
+			<div class ="panel" ng-show="panel.selectis(2)">
+				<form name="register_e">
+					<label>
+						 Nombre de la salida : <input type="search" name="name_exit"> 
+						 <input type="button" name ="search" value="Buscar">
+					</label>
+				</from>
+			</div>	
+			<div class ="panel" ng-show="panel.selectis(3)">
+				<select name="Salidas">    
+              		<option value="1" selected="selected">Amazonas</option>
+              		<option value="2 "> Antioquia</option>
+              		<option value="3">San andres</option>
+            	</select>
+           		<button> Ingresar </button>
+			</div>	
+			<div class ="panel" ng-show="panel.selectis(4)">
+				<h2> Ingreso de mapa</h2>
+			</div>	
+			<div class ="panel" ng-show="panel.selectis(5)">
+				<h2> Cuadro donde se mostrar la salida y tipo de formato disponible </h2>
+			</div>	
+			<div class ="panel" ng-show="panel.selectis(6)">
+				<from name ="profile">
+					Nombre : {{user.d.name}} <br>
+					Apellido : {{user.d.last_name}}<br>
+					Correo : {{user.d.user}}<br>
+					Programa : <br>
+					Contraseña : {{user.d.password}}<br>
+				</from>
+			</div>
+
+		</section>
 		 <script type="text/javascript" src="angular.min.js"></script>
 		 <script type="text/javascript" src="model_student.js"></script>
 	</body>

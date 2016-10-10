@@ -9,13 +9,24 @@
 				this.d= profile;
 			}
 		);
+		module_student.controller
+		('panel_controller',function()
+			{
+				this.tab=1;
+				this.selecttab=function(settab){
+					this.tab=settab;
+				};
+				this.selectis=function(checktab){
+					return this.tab === checktab;
+				};
+			}
+		);
 		var profile=
 		{
 			name:'Camilo',
-			last_name: 2.95,
-			user:'carizas',
-			email:'carizas@unbosque.edu.co',
-			pasword:'123',
+			last_name: 'Ariza',
+			user:'carizas@unbosque.edu.co',
+			password:'123',
 		}
 	}
 )();
