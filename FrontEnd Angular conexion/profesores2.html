@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html ng-app="userStore">
+  <head>
+    <link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.min.css" />
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </head>
+    <style type="text/css">
+	/* make sidebar nav vertical */ 
+	@media (min-width: 768px) {
+	  .sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+		float: none;
+	  }
+	  .sidebar-nav .navbar ul:not {
+		display: block;
+
+	  }
+	  .sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	  }
+	}
+	@media (min-width: 768px) {
+	  /* uncomment if you would like the menu to be fixed */
+	  /* .navbar {
+		  position: fixed;
+		  width: 170px;
+		  z-index: 2;
+	  } */
+	}
+	@media (min-width: 992px) {
+	  .navbar {
+		  width: 212px;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  .navbar {
+		  width: 262px;
+	  }
+	}
+	.sidebar-nav .navbar-header{ float: none; }
+</style>
+  <body ng-controller="StoreController as store">
+    <!--  Store Header  -->
+    <header>
+      <h1 class="text-center">Usuarios</h1>
+      <h2 class="text-center">Crud</h2>
+    </header>
+
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" >
+       
+
+  
+
+        <!-- Product Tabs  -->
+        <section  ng-controller="TabController as tab">
+		
+		 <div class="navbar-collapse collapse sidebar-navbar-collapse">
+		 
+          <ul class="nav nav-pills">
+            <li ng-class="{ active:tab.isSet(1) }">
+              <a class="active" href ng-click="tab.setTab(1)">Profesores</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(2) }">
+              <a href ng-click="tab.setTab(2)">Modificar</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(3) }">
+              <a href ng-click="tab.setTab(3)">Crear</a>
+            </li>
+          </ul>
+		  
+		   </div><!--/.nav-collapse -->
+
+          <!--  Description Tab's Content  -->
+          <div ng-show="tab.isSet(1)" >
+            <table class="table">
+            <thead>
+            
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Correo</th>
+    <th>password</th>
+    <th>Programa</th>
+    <th>Accion</th>
+     </thead>
+  <tbody>
+  <tr ng-repeat="user in store.users">
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.userName}}</td>
+    <td>{{user.password}}</td>
+    <td>{{user.program}}</td>
+      <td><input type="submit"  class="btn btn-primary pull-center" value="Eliminar" /></td>
+    </tbody>
+  </tr>
+</table>
+           
+            <blockquote>{{product.description}}</blockquote>
+          </div>
+
+          <!--  Spec Tab's Content  -->
+          <div ng-show="tab.isSet(2)">
+            <h4>Modificar</h4>
+            
+        
+            <select ng-model="selectedUser" ng-options="user.firstName for user in store.users">
+                 
+</select>
+
+
+           <form role="form">
+              
+              <div class="form-group">
+              <label for="disabledTextInput">Nombre:</label>
+                <input  type="text" class="form-control" placeholder="nombre" value="{{selectedUser.firstName}}"></input>
+                
+              </div>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Apellido:</label>
+                <input  type="text" class="form-control" placeholder="apellido" title="apellido" value="{{selectedUser.lastName}}"></input>
+              </fieldset>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Correo:</label>
+                <input  type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" value="{{selectedUser.userName}}"/>
+            
+           
+            
+              </fieldset>
+              
+               <fieldset class="form-group">
+                <label for="disabledTextInput">Password:</label>
+                <input type="password"  class="form-control" placeholder="password" title="password" value="{{selectedUser.password}}"></input>
+              </fieldset>
+              
+               <fieldset class="form-group">
+                 <label for="disabledTextInput">Programa:</label>
+                <input type="text" class="form-control" placeholder="programa" title="program" value="{{selectedUser.program}}"></input>
+              </fieldset>
+             
+          
+               <fieldset class="form-group">
+                <input type="submit" class="btn btn-primary pull-center" value="Modificar" />
+              </fieldset>
+            </form>
+
+             
+        
+<div ng-show="tab.isSet(4)">
+ <fieldset class="form-group">
+                <textfield> nombre:<textfield>
+                <input  class="form-control" placeholder="nombre" title="Review"></input>
+                </fieldset>
+                </div>
+            
+          </div>
+
+          <!--  Review Tab's Content  -->
+          <div ng-show="tab.isSet(3)">
+            <!--  Product Reviews List -->
+            <ul>
+           
+              <li ng-repeat="review in product.reviews">
+                <blockquote>
+                  <strong>{{review.stars}} Stars</strong>
+                  {{review.body}}
+                  <cite class="clearfix">—{{review.author}} on  {{review.createdOn |date }} </cite>
+                </blockquote>
+              </li>
+            </ul>
+
+            <!--  Review Form -->
+            <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+
+              <!--  Live Preview -->
+            
+
+              <!--  Review Form -->
+              <h4>Crear usuario</h4>
+             
+              <form role="form">
+              
+              <div class="form-group">
+              <label for="disabledTextInput">Nombre:</label>
+                <input  type="text" class="form-control" placeholder="nombre" ></input>
+                
+              </div>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Apellido:</label>
+                <input  type="text" class="form-control" placeholder="apellido" title="apellido"></input>
+              </fieldset>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Correo:</label>
+                <input  type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+            
+           
+            
+              </fieldset>
+              
+               <fieldset class="form-group">
+                <label for="disabledTextInput">Password:</label>
+                <input type="password"  class="form-control" placeholder="password" title="password"></input>
+              </fieldset>
+              
+               <fieldset class="form-group">
+                 <label for="disabledTextInput">Programa:</label>
+                <input type="text" class="form-control" placeholder="programa" title="program"></input>
+              </fieldset>
+             
+              <fieldset class="form-group">
+                <input type="submit" class="btn btn-primary pull-center" value="Crear" />
+              </fieldset>
+              
+            </form>
+              
+            </form>
+          </div>
+
+        </section>
+      </div>
+
+    </div>
+  </body>
+</html>
