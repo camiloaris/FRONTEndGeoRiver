@@ -2,27 +2,30 @@
 <html ng-app="student">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Estudiantes</title>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
-	<body ng-controller="controller_student as user">
-		<div  >
-			<h1> {{user.d.user}}</h1>
+	<body ng-controller="controller_student">
+		<div>
+			<h1> {{d.user}}</h1>
 		</div>
-
-		<section ng-controller= "panel_controller as panel">
-			<ul class="menu">
-				<li ng-class="{active: panel.selectis(1)}"> <a href ng-click="panel.selecttab(1)"> Inicio</a></li>
-				<li ng-class="{active: panel.selectis(2)}"> <a href ng-click="panel.selecttab(2)"> Matricularse</a></li>
-				<li ng-class="{active: panel.selectis(3)}"> <a href ng-click="panel.selecttab(3)"> Ingresar datos</a></li>
-				<li ng-class="{active: panel.selectis(4)}"> <a href ng-click="panel.selecttab(4)"> Ver datos</a></li>
-				<li ng-class="{active: panel.selectis(5)}"> <a href ng-click="panel.selecttab(5)"> Descargar datos</a></li>
-				<li ng-class="{active: panel.selectis(6)}"> <a href ng-click="panel.selecttab(6)"> Perfil</a></li>
+		<!-- Menu -->
+		<section ng-controller= "panel_controller">
+			<ul class="nav nav-pills ">
+				<li ng-class="{active: selectis(1)}"> <a href ng-click="selecttab(1)"> Inicio</a></li>
+				<li ng-class="{active: selectis(2)}"> <a href ng-click="selecttab(2)"> Matricularse</a></li>
+				<li ng-class="{active: selectis(3)}"> <a href ng-click="selecttab(3)"> Ingresar datos</a></li>
+				<li ng-class="{active: selectis(4)}"> <a href ng-click="selecttab(4)"> Ver datos</a></li>
+				<li ng-class="{active: selectis(5)}"> <a href ng-click="selecttab(5)"> Descargar datos</a></li>
+				<li ng-class="{active: selectis(6)}"> <a href ng-click="selecttab(6)"> Perfil</a></li>
 			</ul>
-
-			<div class ="panel" ng-show="panel.selectis(1)">
+			
+			<div class ="panel" ng-show="selectis(1)">
 				<h2> Nuevas actividades </h2>
-			</div>	
-			<div class ="panel" ng-show="panel.selectis(2)">
+			</div>
+
+			<div class ="panel" ng-show="selectis(2)">
 				<form name="register_e">
 					<label>
 						 Nombre de la salida : <input type="search" name="name_exit"> 
@@ -30,32 +33,39 @@
 					</label>
 				</from>
 			</div>	
-			<div class ="panel" ng-show="panel.selectis(3)">
+
+			<div class ="panel" ng-show="selectis(3)">
 				<select name="Salidas">    
               		<option value="1" selected="selected">Amazonas</option>
               		<option value="2 "> Antioquia</option>
               		<option value="3">San andres</option>
             	</select>
            		<button> Ingresar </button>
-			</div>	
-			<div class ="panel" ng-show="panel.selectis(4)">
+			</div>
+
+			<div class ="panel" ng-show="selectis(4)">
 				<h2> Ingreso de mapa</h2>
 			</div>	
-			<div class ="panel" ng-show="panel.selectis(5)">
+
+			<div class ="panel" ng-show="selectis(5)">
 				<h2> Cuadro donde se mostrar la salida y tipo de formato disponible </h2>
 			</div>	
-			<div class ="panel" ng-show="panel.selectis(6)">
+
+			<div class ="panel" ng-show="selectis(6)">
 				<from name ="profile">
-					Nombre : {{user.d.name}} <br>
-					Apellido : {{user.d.last_name}}<br>
-					Correo : {{user.d.user}}<br>
+					Nombre : {{d.name}} <br>
+					Apellido : {{d.last_name}}<br>
+					Correo : {{d.user}}<br>
 					Programa : <br>
-					Contraseña : {{user.d.password}}<br>
+					Contraseña : {{d.password}}<br>
 				</from>
 			</div>
 
 		</section>
-		 <script type="text/javascript" src="angular.min.js"></script>
-		 <script type="text/javascript" src="model_student.js"></script>
+
+		<script src="bootstrap/js/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="angular.min.js"></script>
+		<script type="text/javascript" src="model_student.js"></script>
 	</body>
 </html>

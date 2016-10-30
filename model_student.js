@@ -4,20 +4,20 @@
 		var module_student = angular.module('student',[ ]);
 
 		module_student.controller
-		('controller_student',function()
+		('controller_student',function($scope)
 			{
-				this.d= profile;
+				$scope.d= profile;
 			}
 		);
 		module_student.controller
-		('panel_controller',function()
+		('panel_controller',function($scope)
 			{
-				this.tab=1;
-				this.selecttab=function(settab){
-					this.tab=settab;
+				$scope.tab=1;
+				$scope.selecttab=function(settab){
+					$scope.tab=settab;
 				};
-				this.selectis=function(checktab){
-					return this.tab === checktab;
+				$scope.selectis=function(checktab){
+					return $scope.tab === checktab;
 				};
 			}
 		);
