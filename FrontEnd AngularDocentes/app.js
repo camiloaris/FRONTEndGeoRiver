@@ -3,12 +3,8 @@
 
   app.controller('StoreController', function() {
     this.users = Salidas;
-    this.Proyect= Proyecto;
-    this.user= Perfil;
-    this.var=Variable;
+    this.activity=Actividad;
   }
-
-
   );
 
 
@@ -69,20 +65,20 @@
     },
     ];
 
-  var Proyecto = [{
-      Proyect: 'proyecto 1',
+  var Actividad = [{
+      Activity: 'Actividad 1',
       Description: "Salida Amazonas 2017 Informe Abejas",
       color: '#CCC',
       faces: 14
     }, 
     {
-      Proyect: 'proyecto 2',
+      Activity: 'Actividad 2',
       Description: "Muestras de Agua",
       color: '#CCC',
       faces: 14
     }, 
    {
-      Proyect: 'proyecto 3',
+      Activity: 'Actividad 3',
       Description: "Fauna y flora",
       color: '#CCC',
       faces: 14
@@ -91,31 +87,6 @@
    
     ];
 
-
-  var Perfil = [{
-      nombre: 'natalia',
-      correo: 'j@mail.com',
-      color: '#CCC',
-      faces: 14
-    }, 
-     
-   
-    ];
-
-
-      var Variable = [{
-      variable: 'Fisica',
-      color: '#CCC',
-      faces: 14
-    }, 
-    {
-      variable: 'Quimica',
-      color: '#CCC',
-      faces: 14
-    }, 
-  
-   
-    ];
 
 
 

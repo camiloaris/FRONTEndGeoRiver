@@ -4,7 +4,29 @@
     <link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.min.css" />
     <script type="text/javascript" src="angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+
   </head>
+
+  <style type="text/css">
+ 
+  .container{
+    text-align:center
+}
+.left{
+    float: left;
+   height:500px;
+   width: 150px
+}
+.right{
+    float: right;
+    
+}
+.center{
+  
+    margin:0 auto; 
+   display:inline-block
+}
+</style>
 
   <body ng-controller="StoreController as store">
     <!--  Store Header  -->
@@ -18,93 +40,81 @@
       <!--  Product Container  -->
       <div class="list-group-item" >
        
+ <div class="navbar-login navbar-login-session">
+<!--<div class="nav nav-pills">-->
 
-     <div class="nav nav-pills">
-      <p align="right"> <a href ng-click="tab.setTab(6)" class="navbar-link">Jorge Diaz</a></p>
-     </div>
+<!-- <div class="navbar-login navbar-login-session">-->
+     <div class="row">
+          <div class="col-lg-12">
+              <p align="right">
+                  <a href ng-click="tab.setTab(0)">Cerrar Sesion</a>
+              </p>
+          </div>
+      </div>
+ <!-- </div>-->
+</div>
 
         <!-- Menu del modulo de Docentes  -->
         <section ng-controller="TabController as tab">
           <ul class="nav nav-pills">
             <li ng-class="{ active:tab.isSet(1) }">
-              <a href ng-click="tab.setTab(1)">Inicio</a>
+              <a href ng-click="tab.setTab(1)">Salidas</a>
             </li>
             <li ng-class="{ active:tab.isSet(2) }">
-              <a href ng-click="tab.setTab(2)">Salidas</a>
-            </li>
+              <a href ng-click="tab.setTab(2)">consultas</a>
 
               <li ng-class="{ active:tab.isSet(3) }">
-              <a href ng-click="tab.setTab(3)">Gestion de datos</a>
-            </li>
-
-              <li ng-class="{ active:tab.isSet(5) }">
-              <a href ng-click="tab.setTab(9)">Perfil</a>
+              <a href ng-click="tab.setTab(3)">Perfil</a>
             </li>
 
             </ul>
+<!-- Matricular Estudiantes-->
 
-          <!--  Description Tab's Content  -->
-  <div ng-show="tab.isSet(1)" >
-    <table class="table">
-        <thead>
-            
-        <th>Programa</th>
-        <th>Asignatura</th>
-        <th>Salida</th>
-        <th>Fecha</th>
-        <th>Descripcion</th>
-      </thead>
-  <tbody>
-  <tr ng-repeat="user in store.users">
-    <td>{{user.program}}</td>
-    <td>{{user.subject}}</td>
-    <td>{{user.Excursion}}</td>
-    <td>{{user.Date}}</td>
-    <td>{{user.Description}}</td>
-  </tbody>
-  </tr>
-</table>
- <blockquote>{{product.description}}</blockquote>
- </div>
+<div ng-show="tab.isSet(6)">
+<center>
+  <h2>
+    Matricular
+      <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar Estudiante">
   
-          <div ng-show="tab.isSet(2)">
-            <!--  Product Reviews List -->
-            <ul>
-     
-              <li ng-repeat="review in product.reviews">
-                <blockquote>
-                  <strong>{{review.stars}} Stars</strong>
-                  {{review.body}}
-                  <cite class="clearfix">—{{review.author}} on  {{review.createdOn |date }} </cite>
-                </blockquote>
-              </li>
-            </ul>
+      <button type="submit" class="btn btn-default">Enviar</button>
+              <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Matricular</button>
+           
+     </div>
+     </form>
+  </h2>
 
-              <!-- Formulario para crear una nueva salida -->
-       <center>
-           <form name="reviewForm"  ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+
+</center>
+</div>
+
+<!-- Salidas-->
+<div ng-show="tab.isSet(1)">
+ <CENTER>
+             <form name="reviewForm"  ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
          
-             
-              <!--  Live Preview -->
-              <blockquote >
-               <!-- <strong>Salida</strong>-->
-                <cite class="clearfix">{{reviewCtrl.review.author}}</cite>
-              </blockquote>
-
-                                 
-       
+                                  
              <div class="form-inline">
              <textfield> Programa:</textfield>
              </div>
              <div>
-             <input type="text" class="form-control" placeholder="Programa" title="Programa">
+             <input type=text list=Programa >
+             <datalist id=Programa >
+             <option> Ingenieria Ambiental  
+             <option> Biologia
+             </datalist>
              </div>
              
              <div class="form-inline">
              <textfield> Asignatura:</textfield>
              </div>
              <div>
-             <input type="text" class="form-control" placeholder="Asignatura" title="Asignatura">
+             <input type=text list=Asignatura >
+             <datalist id=Asignatura >
+             <option> SIG  
+             <option> Biologia II
+             </datalist>
              </div>
 
               <div class="form-inline">
@@ -113,6 +123,12 @@
              <div>
              <input  ng-model="reviewCtrl.review.author" type="text" class="form-control" placeholder="Salida" title="Salida">
              </div>
+             
+             <div class="form-inline">
+             <textfield> Fecha De Finalizacion:</textfield>
+             </div>
+             <div>
+             <input type="date" class="form-control" placeholder="Fecha " title="FechaF">
 
              <div class="form-inline">
              <textfield> Fecha De Inicio:</textfield>
@@ -120,111 +136,211 @@
              <div>
              <input type="date" class="form-control" placeholder="Fecha " title="FechaI">
              </div>
-             <div class="form-inline">
-             <textfield> Fecha De Finalizacion:</textfield>
-             </div>
-             <div>
-             <input type="date" class="form-control" placeholder="Fecha " title="FechaF">
-             </div>
-                <div class="form-inline">
-             <textfield> Descripcion:</textfield>
-             </div>
-             
               <div class="form-inline">
-             <textarea class="form-control" rows="3"></textarea>
-             </div>
-
-             <div class="form-inline">
-             <textfield> Password:</textfield>
+             <textfield> Semestre:</textfield>
              </div>
              <div>
-             <input type="password" class="form-control" placeholder="password " title="password">
+             <input  ng-model="reviewCtrl.review.author" type="text" class="form-control" placeholder="Semestre" title="Semestre">
+             </div>
+                      
+             <div class="form-inline">
+             <textfield> Contraseña de Matriculacion:</textfield>
+             </div>
+             <div>
+             <input type="password" class="form-control" placeholder="password " title="Contraseña">
              </div>
              <br>
-             <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Crear</button>
+             
            
-           </form>
+             <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Crear Proyecto</button>
 
-         </center>
-          
-          </div>
+           </form>  
 
 
-             <div ng-show="tab.isSet(4)">
-              
-              <select class="selectpicker">
-              <optgroup label="Proyectos">
-              <option  ng-repeat="Proyect in store.Proyect"> 
-               <li>
-                <a>{{Proyect.Proyect}}</a>
-               </li>
-               </li>
-              </option>
-              </optgroup>
-              </select>
-                <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(11)">Crear Nueva Actividad</button>
-           
-       </div>
-
-           
-             <center>
-             <div ng-show="tab.isSet(11)">
-
-             <div class="form-inline" >         
-             <textfield> Actividad:</textfield>
-             </div>
-             <div>
-             <input type="text" class="form-control" placeholder="Actividad" title="Actividad">
-             </div>
-               <div class="form-inline" >
-              <textfield> Variable:</textfield>
-              </div>
-       <div>
-              
-              <select class="selectpicker">
+    </CENTER>       
+ </div>
+<!-- actividad-->
+  <Center>
+ <div class ="center" ng-show="tab.isSet(5)" >
+     <div ng-controller="Note">
+      <div ng-repeat="item in items">
+            <select class="selectpicker">
               <optgroup label="Tipo de Variable">
-              <option  ng-repeat="Var in store.var"> 
+              <option  ng-repeat="Var in store.activity"> 
                <li>
                 <a>{{Var.variable}}</a>
                </li>
                </option>
               </optgroup>
               </select>
-       </div>
+        <input ng-class="{'blockInput': !item.inlineChecked}" type="text" placeholder="Descripcion" ng-model="item.text">
+        <input type="checkbox" name="check" value="inline" ng-model="item.inlineChecked"> Enviar
+      </div>
+      <button class="btn btn-primary pull-center">Volver</button>
+      <button class="btn btn-primary pull-center"  ng-click="add()">Nueva Actividad</button>
+      <button class="btn btn-primary pull-center">Enviar</button>
+    </div>
 
-             <div class="form-inline" >         
-             <textfield> Medida:</textfield>
-             </div>
-             <div>
-             <input type="text" class="form-control" placeholder="Medicion" title="Medicion">
-             </div>
-          
-
-             <div class="form-inline">
-             <textfield> Lugar de recoleccion:</textfield>
-             </div>
-             <div>
-             <input type="text" class="form-control" placeholder="Lugar" title="Lugar">
-             </div>
-             <div class="form-inline">
-              <textfield>Fecha de Recoleccion</textfield>
-              </div>
-             <input type="date" class="form-control" placeholder="Fecha" title="Fecha">
-               <div class="form-inline">
-              <textfield>Imagen </textfield>
-              </div>
-             <input type="file" class="form-control" placeholder="Imagen" title="Imagen">
-         
-              <div>
-             
-               <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Crear
-             </div>
-             
-               </center>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+    <script type="text/javascript">
+         var Note = function($scope){
+        $scope.items = [];
         
-           </div>
+        $scope.add = function () {
+          $scope.items.push({ 
+            inlineChecked: false,
+            question: "",
+            questionPlaceholder: "",
+            text: ""
+          });
+        };
+      }
+
+
+    </script>
+ 
+  
+
+ </div>
+ </Center>
+<!-- Proyecto-->
+
+<center>
+ <div class ="center" ng-show="tab.isSet(4)" >
+    <div class="navbar-right" >
+      <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar Salida">
+  
+      <button type="submit" class="btn btn-default">Enviar</button>
+              <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(6)">Matricular Estudiantes</button>
+              <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(5)">Crear Proyecto</button>
+     </div>
+     </form>
+     <br>
+     <br>
+    <table class="table">
+        <thead>
+            
+        <th>Programa</th>
+
+        <th>Descripcion</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
        
+      </thead>
+  <tbody>
+  <tr ng-repeat="user in store.users">
+    <td>{{user.program}}</td>
+
+    <td>{{user.Description}}</td>
+    <td> <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Modificar </button></td>
+    <td> <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Eliminar</button></td>
+ 
+  </tbody>
+  </tr>
+</table>
+ <button type="submit" class="btn btn-primary pull-center" value = "volver" href ng-click="tab.setTab(1)">Volver</button>
+            
+ </div>
+ </center>
+
+
+<!-- Perfil-->
+ <div ng-show="tab.isSet(3)">
+    <h4 class="text-center">Modificacion Perfil</h4>
+     <form  class="text-center" role="form" >
+ 
+      <fieldset class="form-group">
+              <label for="disabledTextInput">Nombre:</label>
+                <input  type="text" class="form-control" placeholder="nombre" value="{{selectedUser.firstName}}"></input>
+                
+              </fieldset>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Apellido:</label>
+                <input  type="text" class="form-control" placeholder="apellido" title="apellido" value="{{selectedUser.lastName}}"></input>
+              </fieldset>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Correo:</label>
+                <input  type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" value="{{selectedUser.userName}}"/>
+            
+           
+            
+              </fieldset>
+              
+               <fieldset class="form-group">
+                <label for="disabledTextInput">Password:</label>
+                <input type="password"  class="form-control" placeholder="password" title="password" value="{{selectedUser.password}}"></input>
+              </fieldset>
+              
+               <fieldset class="form-group">
+                 <label for="disabledTextInput">Programa:</label>
+                <input type="text" class="form-control" placeholder="programa" title="program" value="{{selectedUser.program}}"></input>
+              </fieldset>
+             
+          
+               <fieldset class="form-group">
+                <input type="submit" class="btn btn-primary pull-center" value="Volver" />
+                <input type="submit" class="btn btn-primary pull-center" value="Modificar" />
+
+              </fieldset>
+            </form>        
+          
+ </div>
+
+
+          <!--  Description Tab's Content  -->
+  <div ng-show="tab.isSet(2)" >
+  <div>
+      <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar Salida">
+  
+      <button type="submit" class="btn btn-default">Enviar</button>
+      <textfield> Nueva salida</textfield>
+         <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(11)">Crear</button>
+      
+
+
+    </form>
+  <br><br>
+ 
+  </div>
+
+  <br>
+    <table class="table">
+        <thead>
+            
+        <th>Programa</th>
+        <th>Asignatura</th>
+        <th>Salida</th>
+        <th>Fecha</th>
+        <th>Descripcion</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+       
+      </thead>
+  <tbody>
+  <tr ng-repeat="user in store.users">
+    <td>{{user.program}}</td>
+    <td>{{user.subject}}</td>
+    <td>{{user.Excursion}}</td>
+    <td>{{user.Date}}</td>
+    <td>{{user.Description}}</td>
+    <td> <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Modificar </button></td>
+    <td> <button type="submit" class="btn btn-primary pull-center" value = "Crear" href ng-click="tab.setTab(4)">Eliminar</button></td>
+ 
+  </tbody>
+  </tr>
+</table>
+ <blockquote>{{product.description}}</blockquote>
+ </div>
+        
 
 </div>
 </body>
 </html>
+
+
