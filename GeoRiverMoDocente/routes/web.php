@@ -27,3 +27,9 @@ Route::get('/home', 'HomeController@index');
 
 
 Route::resource('programas', 'programaController');
+
+Route::resource('variableCuantitativas', 'variableCuantitativaController');
+
+
+
+Route::resource('variableCualitativas', 'variableCualitativaController');
