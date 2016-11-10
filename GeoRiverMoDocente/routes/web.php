@@ -33,3 +33,11 @@ Route::resource('variableCuantitativas', 'variableCuantitativaController');
 
 
 Route::resource('variableCualitativas', 'variableCualitativaController');
+
+
+
+Route::resource('proyectos', 'proyectoController');
+
+
+
+Route::resource('salidas', 'salidaController');

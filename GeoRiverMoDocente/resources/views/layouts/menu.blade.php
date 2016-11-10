@@ -12,3 +12,13 @@
     <a href="{!! route('variableCualitativas.index') !!}"><i class="fa fa-edit"></i><span>variableCualitativas</span></a>
 </li>
 
+
+<li class="{{ Request::is('proyectos*') ? 'active' : '' }}">
+    <a href="{!! route('proyectos.index') !!}"><i class="fa fa-edit"></i><span>proyectos</span></a>
+</li>
+
+
+<li class="{{ Request::is('salidas*') ? 'active' : '' }}">
+    <a href="{!! route('salidas.index') !!}"><i class="fa fa-edit"></i><span>salidas</span></a>
+</li>
+
